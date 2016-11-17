@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace NetCoreManager
+namespace NetCoreManager.Mvc
 {
     public class Program
     {
