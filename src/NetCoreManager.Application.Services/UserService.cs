@@ -9,13 +9,13 @@ namespace NetCoreManager.Application.Services
 {
     public class UserService:IUserService
     {
-        public async Task<User> GetById(int Id)
+        public async Task<User> GetById(int id)
         {
             User user=new User();
-            user.Id = 1;
-            user.Name = "测试";
-            user.IsDelete = false;
-            user.AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            user.Id = Guid.NewGuid();
+            user.Account = "测试";
+            user.IsDeleted = false;
+            user.CreateTime= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             return user;
         }
 

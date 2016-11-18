@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NetCoreManager.Domain.Entity;
 
 namespace NetCoreManager.Repository.Interfaces
 {
-    public class Class1
+    public interface IUserRepository : IRepository<User>
     {
-        public Class1()
-        {
-        }
     }
 }

@@ -7,6 +7,6 @@ namespace NetCoreManager.Domain
 {
     public interface IAggregateRoot
     {
-        int Id { get; }
+        Guid Id { get; }
     }
 }

@@ -11,7 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NetCoreManager.Application.Interface;
 using NetCoreManager.Application.Services;
+using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
+using Microsoft.EntityFrameworkCore;
 
 namespace NetCoreManager.Mvc
 {
@@ -47,6 +49,12 @@ namespace NetCoreManager.Mvc
 
             // Add framework services.
             services.AddMvc();
+
+            //获取数据库连接字符串
+            var sqlConnectionString = Configuration.GetConnectionString("Default");
+
+            //添加数据上下文
+            services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new AutofacModule());
