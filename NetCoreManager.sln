@@ -28,6 +28,14 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NetCoreManager.Domain", "sr
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NetCoreManager.Component.Tools", "src\NetCoreManager.Component.Tools\NetCoreManager.Component.Tools.xproj", "{0416C3FC-7CC4-4185-903B-DB34FC7AB277}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NetCoreManager.Infrastructure.IoC.Contracts", "src\NetCoreManager.Infrastructure.IoC.Contracts\NetCoreManager.Infrastructure.IoC.Contracts.xproj", "{E779E103-1DAD-451D-9F58-5E53B7A1309D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NetCoreManager.BootStrapper", "src\NetCoreManager.BootStrapper\NetCoreManager.BootStrapper.xproj", "{40F05C05-E52B-48F4-B712-B6A7C3C2193B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NetCoreManager.Repository.Interfaces", "src\NetCoreManager.Repository.Interfaces\NetCoreManager.Repository.Interfaces.xproj", "{93675412-7997-44FF-9851-C719DE9DACFB}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NetCoreManager.Repository", "src\NetCoreManager.Repository\NetCoreManager.Repository.xproj", "{1DE04240-283C-45FD-800D-3F15D5AFF6DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +62,22 @@ Global
 		{0416C3FC-7CC4-4185-903B-DB34FC7AB277}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0416C3FC-7CC4-4185-903B-DB34FC7AB277}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0416C3FC-7CC4-4185-903B-DB34FC7AB277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E779E103-1DAD-451D-9F58-5E53B7A1309D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E779E103-1DAD-451D-9F58-5E53B7A1309D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E779E103-1DAD-451D-9F58-5E53B7A1309D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E779E103-1DAD-451D-9F58-5E53B7A1309D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40F05C05-E52B-48F4-B712-B6A7C3C2193B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40F05C05-E52B-48F4-B712-B6A7C3C2193B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40F05C05-E52B-48F4-B712-B6A7C3C2193B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40F05C05-E52B-48F4-B712-B6A7C3C2193B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93675412-7997-44FF-9851-C719DE9DACFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93675412-7997-44FF-9851-C719DE9DACFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93675412-7997-44FF-9851-C719DE9DACFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93675412-7997-44FF-9851-C719DE9DACFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE04240-283C-45FD-800D-3F15D5AFF6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE04240-283C-45FD-800D-3F15D5AFF6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE04240-283C-45FD-800D-3F15D5AFF6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE04240-283C-45FD-800D-3F15D5AFF6DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +92,9 @@ Global
 		{F74FF837-1082-4BA1-BB1E-40E784A61B2C} = {CF2A81B1-05F4-4156-A1BC-47E9A71FCF81}
 		{AD1A9B20-AF57-448D-8A1E-CBD7B221EF85} = {7945CC79-1022-4731-A067-CADFEEC42407}
 		{0416C3FC-7CC4-4185-903B-DB34FC7AB277} = {33693F85-47EC-4674-8698-8BE0C40F67A8}
+		{E779E103-1DAD-451D-9F58-5E53B7A1309D} = {33693F85-47EC-4674-8698-8BE0C40F67A8}
+		{40F05C05-E52B-48F4-B712-B6A7C3C2193B} = {33693F85-47EC-4674-8698-8BE0C40F67A8}
+		{93675412-7997-44FF-9851-C719DE9DACFB} = {33693F85-47EC-4674-8698-8BE0C40F67A8}
+		{1DE04240-283C-45FD-800D-3F15D5AFF6DD} = {33693F85-47EC-4674-8698-8BE0C40F67A8}
 	EndGlobalSection
 EndGlobal
