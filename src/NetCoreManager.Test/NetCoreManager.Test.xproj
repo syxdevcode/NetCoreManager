@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>40f05c05-e52b-48f4-b712-b6a7c3c2193b</ProjectGuid>
-    <RootNamespace>NetCoreManager.BootStrapper</RootNamespace>
+    <ProjectGuid>fd18c6bb-20fd-4475-8a43-62b7e3f73f6e</ProjectGuid>
+    <RootNamespace>NetCoreManager.Test</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

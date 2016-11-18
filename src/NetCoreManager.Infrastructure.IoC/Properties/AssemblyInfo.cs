@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NetCoreManager.BootStrapper")]
+[assembly: AssemblyProduct("NetCoreManager.Infrastructure.IoC")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("40f05c05-e52b-48f4-b712-b6a7c3c2193b")]
+[assembly: Guid("20c1289c-c9b8-4065-8d3a-3f1c7f401083")]

@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>e779e103-1dad-451d-9f58-5e53b7a1309d</ProjectGuid>
-    <RootNamespace>NetCoreManager.Infrastructure.IoC.Contracts</RootNamespace>
+    <ProjectGuid>5ba39284-6585-4bbf-9dac-e3dd72c3a621</ProjectGuid>
+    <RootNamespace>NetCoreManager.Application.Services</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

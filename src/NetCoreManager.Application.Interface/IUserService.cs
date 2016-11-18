@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NetCoreManager.Domain.Entity;
 
 namespace NetCoreManager.Application.Interface
 {
-    public class Class1
+    public interface IUserService
     {
-        public Class1()
-        {
-        }
+        Task<User> GetById(int Id);
     }
 }
