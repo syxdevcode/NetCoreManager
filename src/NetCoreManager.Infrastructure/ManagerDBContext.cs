@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace NetCoreManager.Infrastructure
 {
-    public class ManagerDbContext: DbContext, IDbContext
+    public class ManagerDbContext: DbContext,IDbContext
     {
         public ManagerDbContext(DbContextOptions<ManagerDbContext> options) : base(options)
         {

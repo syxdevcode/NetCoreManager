@@ -14,6 +14,9 @@ using NetCoreManager.Application.Services;
 using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
+using NetCoreManager.Infrastructure.Interfaces;
+using NetCoreManager.Repository;
+using NetCoreManager.Repository.Interfaces;
 
 namespace NetCoreManager.Mvc
 {
@@ -33,8 +36,9 @@ namespace NetCoreManager.Mvc
 
         public IContainer ApplicationContainer { get; private set; }
 
+        //IServiceProvider
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //Transient 服务在每次请求时被创建，它最好被用于轻量级无状态服务（如我们的Repository和ApplicationService服务）
             //services.AddTransient<IApplicationService, ApplicationService>
@@ -47,20 +51,26 @@ namespace NetCoreManager.Mvc
             //而不是手动实现单例设计模式然后由开发者在自定义类中进行操作
             //services.AddSingleton<IApplicationService, ApplicationService>
 
-            // Add framework services.
-            services.AddMvc();
 
             //获取数据库连接字符串
             var sqlConnectionString = Configuration.GetConnectionString("Default");
 
             //添加数据上下文
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            //依赖注入
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IDbContext, ManagerDbContext>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(new AutofacModule());
-            builder.Populate(services);
-            this.ApplicationContainer = builder.Build();
-            return new AutofacServiceProvider(this.ApplicationContainer);
+            // Add framework services.
+            services.AddMvc();
+
+            //var builder = new ContainerBuilder();
+            //builder.RegisterModule(new AutofacModule());
+            //builder.Populate(services);
+            //this.ApplicationContainer = builder.Build();
+            //return new AutofacServiceProvider(this.ApplicationContainer);
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

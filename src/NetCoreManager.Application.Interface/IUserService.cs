@@ -8,6 +8,6 @@ namespace NetCoreManager.Application.Interface
 {
     public interface IUserService
     {
-        Task<User> GetById(int id);
+        Task<User> GetById(Guid id);
     }
 }
