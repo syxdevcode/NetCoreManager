@@ -22,7 +22,8 @@ namespace NetCoreManager.Mvc.Controllers
 
         public async Task<IActionResult> Index()
         {
-           var user=await _IUserService.GetById(Guid.NewGuid());
+            var id = new Guid("cde2389c-de0d-4e57-8a8c-f42f92c474e6");
+           var user=await _IUserService.GetById(id);
             return View(user);
         }
     }

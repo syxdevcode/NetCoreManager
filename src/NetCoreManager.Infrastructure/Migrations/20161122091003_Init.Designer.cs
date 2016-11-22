@@ -8,7 +8,7 @@ using NetCoreManager.Infrastructure;
 namespace NetCoreManager.Infrastructure.Migrations
 {
     [DbContext(typeof(ManagerDbContext))]
-    [Migration("20161122085315_Init")]
+    [Migration("20161122091003_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

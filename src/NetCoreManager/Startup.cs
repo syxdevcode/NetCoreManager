@@ -38,7 +38,7 @@ namespace NetCoreManager.Mvc
 
         //IServiceProvider
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //Transient 服务在每次请求时被创建，它最好被用于轻量级无状态服务（如我们的Repository和ApplicationService服务）
             //services.AddTransient<IApplicationService, ApplicationService>
@@ -60,17 +60,17 @@ namespace NetCoreManager.Mvc
             //依赖注入
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
             //services.AddScoped<IDbContext, ManagerDbContext>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<IUserService, UserService>();
 
             // Add framework services.
             services.AddMvc();
 
-            //var builder = new ContainerBuilder();
-            //builder.RegisterModule(new AutofacModule());
-            //builder.Populate(services);
-            //this.ApplicationContainer = builder.Build();
-            //return new AutofacServiceProvider(this.ApplicationContainer);
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new AutofacModule());
+            builder.Populate(services);
+            this.ApplicationContainer = builder.Build();
+            return new AutofacServiceProvider(this.ApplicationContainer);
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,6 +101,10 @@ namespace NetCoreManager.Mvc
             // If you want to dispose of resources that have been resolved in the
             // application container, register for the "ApplicationStopped" event.
             appLifetime.ApplicationStopped.Register(() => this.ApplicationContainer.Dispose());
+
+
+            SeedData.Initialize(app.ApplicationServices); //初始化数据
+
         }
     }
 }

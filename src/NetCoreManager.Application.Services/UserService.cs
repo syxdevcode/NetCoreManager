@@ -9,7 +9,7 @@ using NetCoreManager.Repository.Interfaces;
 
 namespace NetCoreManager.Application.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         public readonly IUserRepository _IUserRepository;
 
@@ -20,12 +20,12 @@ namespace NetCoreManager.Application.Services
 
         public async Task<User> GetById(Guid id)
         {
-            //var u = await _IUserRepository.Get(id).FirstOrDefaultAsync();
-               User user=new User();
-            user.Id = Guid.NewGuid();
-            user.Account = "测试";
-            user.IsDeleted = false;
-            user.CreateTime= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var user = await _IUserRepository.Get(id).FirstOrDefaultAsync();
+            //User user=new User();
+            //user.Id = Guid.NewGuid();
+            //user.Account = "测试";
+            //user.IsDeleted = false;
+            //user.CreateTime= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             return user;
         }
 
