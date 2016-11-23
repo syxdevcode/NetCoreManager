@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace NetCoreManager.Test
 {
-    public class Class1
+    public class UserServiceTest
     {
-        public Class1()
-        {
-        }
+        
+
     }
 }

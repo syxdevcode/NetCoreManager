@@ -13,7 +13,7 @@ namespace NetCoreManager.Infrastructure
         private readonly IDbContext _dbContext;
         private bool disposed = false;
 
-        public UnitOfWork(IDbContext dbContext)
+        private UnitOfWork(IDbContext dbContext)
         {
             if (dbContext == null)
             {
