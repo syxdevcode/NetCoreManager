@@ -26,7 +26,8 @@
     "NetCoreManager.Infrastructure.Interfaces": "1.0.0-*",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0",
     "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0",
-    "Microsoft.EntityFrameworkCore.UnitOfWork": "1.0.0"
+    "Microsoft.EntityFrameworkCore.UnitOfWork": "1.0.0",
+    "Microsoft.EntityFrameworkCore.AutoHistory": "1.0.0"
   },
 
   "tools": {

@@ -57,6 +57,7 @@ namespace NetCoreManager.Mvc
 
             //添加数据上下文
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            
             //依赖注入
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
             //services.AddScoped<IDbContext, ManagerDbContext>();

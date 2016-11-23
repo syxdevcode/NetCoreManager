@@ -34,8 +34,8 @@ namespace NetCoreManager.Test.Web
 
             //添加数据上下文
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            
             //依赖注入
-            services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
             services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
 
             // Add framework services.
