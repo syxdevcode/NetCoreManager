@@ -15,6 +15,10 @@ namespace NetCoreManager.Application.Services
 
         public UserService(IUserRepository iUserRepository)
         {
+            if (iUserRepository == null)
+            {
+                throw new ArgumentNullException(nameof(iUserRepository));
+            }
             _IUserRepository = iUserRepository;
         }
 

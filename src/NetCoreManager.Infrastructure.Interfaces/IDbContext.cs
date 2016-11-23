@@ -19,5 +19,9 @@ namespace NetCoreManager.Infrastructure.Interfaces
         int SaveChanges();
 
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken);
+
+        void Dispose();
+
+
     }
 }

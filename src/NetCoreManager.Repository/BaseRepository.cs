@@ -15,6 +15,10 @@ namespace NetCoreManager.Repository
 
         public BaseRepository(IDbContext dbContext)
         {
+            if (dbContext == null)
+            {
+                throw new ArgumentNullException(nameof(dbContext));
+            }
             _entities = dbContext.Set<TAggregateRoot>();
         }
 
