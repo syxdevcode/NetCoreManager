@@ -3,13 +3,15 @@ using NetCoreManager.Infrastructure.Interfaces;
 using NetCoreManager.Repository.Interfaces;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace NetCoreManager.Repository
 {
     public abstract class BaseRepository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        public readonly IQueryable<TAggregateRoot> _entities;
+        private readonly IQueryable<TAggregateRoot> _entities;
+        private readonly DbSet<TAggregateRoot> _dbSet;
 
         public BaseRepository(IDbContext dbContext)
         {

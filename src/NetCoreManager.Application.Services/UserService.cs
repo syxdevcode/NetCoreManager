@@ -11,7 +11,7 @@ namespace NetCoreManager.Application.Services
 {
     public class UserService : IUserService
     {
-        public readonly IUserRepository _IUserRepository;
+        private readonly IUserRepository _IUserRepository;
 
         public UserService(IUserRepository iUserRepository)
         {
