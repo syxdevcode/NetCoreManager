@@ -16,7 +16,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#" target="_blank"><b>后台管理系统</b></a>
+            <a href="#" target="_blank"><b>Admin</b>LTE</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -83,10 +83,12 @@
 
         //根据是否勾选记住我记录或清除cookie
         function onSubmit() {
-            if ($("#IsRemember:checked").length > 0) {//设置cookie
+            //设置cookie
+            if ($("#IsRemember:checked").length > 0) {
                 $.cookie("fonour_userName", $("#UserName").val());
                 $.cookie("fonour_password", $("#Password").val());
-            } else {//清除cookie
+            } else {
+                //清除cookie
                 $.removeCookie("fonour_userName");
                 $.removeCookie("fonour_password");
             }
