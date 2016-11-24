@@ -13,13 +13,13 @@ namespace NetCoreManager.Application.Services
     {
         private readonly IUserRepository _IUserRepository;
 
-        public UserService(IUserRepository iUserRepository)
+        public UserService(IUserRepository userRepository)
         {
-            if (iUserRepository == null)
+            if (userRepository == null)
             {
-                throw new ArgumentNullException(nameof(iUserRepository));
+                throw new ArgumentNullException(nameof(userRepository));
             }
-            _IUserRepository = iUserRepository;
+            _IUserRepository = userRepository;
         }
 
         public async Task<User> GetById(Guid id)
@@ -31,6 +31,15 @@ namespace NetCoreManager.Application.Services
             //user.IsDeleted = false;
             //user.CreateTime= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             return user;
+        }
+
+        public async Task<User> Login(string account, string pwd)
+        {
+            //TODO 加密密码
+
+            var result = await _IUserRepository.Login(account, pwd);
+
+            return result;
         }
 
     }

@@ -15,6 +15,7 @@ using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
 using NetCoreManager.Infrastructure.Interfaces;
+using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Repository;
 using NetCoreManager.Repository.Interfaces;
 
@@ -67,6 +68,12 @@ namespace NetCoreManager.Mvc
             // Add framework services.
             services.AddMvc();
 
+            //Session服务
+            services.AddSession();
+
+            //登录拦截服务
+            services.AddScoped<LoginActionFilter>();
+
             var builder = new ContainerBuilder();
             builder.RegisterModule(new AutofacModule());
             builder.Populate(services);
@@ -92,13 +99,16 @@ namespace NetCoreManager.Mvc
 
             app.UseStaticFiles();
 
+            //Session
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            
             // If you want to dispose of resources that have been resolved in the
             // application container, register for the "ApplicationStopped" event.
             appLifetime.ApplicationStopped.Register(() => this.ApplicationContainer.Dispose());

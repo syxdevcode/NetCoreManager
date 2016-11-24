@@ -8,12 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NetCoreManager.Mvc.Controllers
 {
-    public class SharedController : BaseController
+    public abstract class BaseController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Error()
-        {
-            return View();
-        }
+
     }
 }

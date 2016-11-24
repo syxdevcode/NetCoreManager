@@ -10,8 +10,8 @@ namespace NetCoreManager.Repository
     public abstract class BaseRepository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        private readonly IQueryable<TAggregateRoot> _entities;
-        private readonly DbSet<TAggregateRoot> _dbSet;
+        protected readonly IQueryable<TAggregateRoot> _entities;
+        protected readonly DbSet<TAggregateRoot> _dbSet;
 
         public BaseRepository(IDbContext dbContext)
         {

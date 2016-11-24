@@ -8,5 +8,6 @@ namespace NetCoreManager.Repository.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
+        Task<User> Login(string account, string pwd);
     }
 }

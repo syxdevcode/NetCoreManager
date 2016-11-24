@@ -9,5 +9,7 @@ namespace NetCoreManager.Application.Interface
     public interface IUserService
     {
         Task<User> GetById(Guid id);
+        
+        Task<User> Login(string account,string pwd);
     }
 }
