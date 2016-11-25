@@ -14,10 +14,8 @@ using NetCoreManager.Application.Services;
 using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
-using NetCoreManager.Infrastructure.Interfaces;
 using NetCoreManager.Mvc.Filter;
-using NetCoreManager.Repository;
-using NetCoreManager.Repository.Interfaces;
+using NetCoreManager.Infrastructure.UnitOfWork;
 
 namespace NetCoreManager.Mvc
 {
@@ -60,10 +58,8 @@ namespace NetCoreManager.Mvc
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
             
             //依赖注入
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<IDbContext, ManagerDbContext>();
-            //services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
+
 
             // Add framework services.
             services.AddMvc();

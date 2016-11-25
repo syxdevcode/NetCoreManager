@@ -39,7 +39,7 @@ namespace NetCoreManager.Mvc.Controllers
             if (ModelState.IsValid)
             {
                 //检查用户信息
-                var user = await _userService.Login(model.Account, model.Password);
+                var user = await _userService.Login(model.Account.ToLower(), model.Password);
                 if (user!=null)
                 {
                     //记录Session
@@ -61,6 +61,14 @@ namespace NetCoreManager.Mvc.Controllers
                 }
             }
             return View(model);
+        }
+
+        public IActionResult SignOut()
+        {
+            HttpContext.Session.Remove("_CurrentUser");
+
+            //跳转到系统首页
+            return RedirectToAction("Index", "Login");
         }
     }
 }

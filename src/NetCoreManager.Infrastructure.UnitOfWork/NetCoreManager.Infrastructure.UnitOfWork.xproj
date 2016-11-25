@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>e8737265-5fb6-4a51-aeca-7bac22458086</ProjectGuid>
-    <RootNamespace>NetCoreManager.Infrastructure.Interfaces</RootNamespace>
+    <ProjectGuid>26966f5f-2956-4d19-99a7-a2f5f6aafa97</ProjectGuid>
+    <RootNamespace>NetCoreManager.Infrastructure.UnitOfWork</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

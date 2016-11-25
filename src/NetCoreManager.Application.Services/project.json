@@ -3,7 +3,8 @@
 
   "dependencies": {
     "NetCoreManager.Application.Interface": "1.0.0-*",
-    "NetCoreManager.Repository": "1.0.0-*",
+    "NetCoreManager.Infrastructure": "1.0.0-*",
+    "NetCoreManager.Infrastructure.UnitOfWork": "1.0.0-*",
     "NETStandard.Library": "1.6.1"
   },
 

@@ -4,7 +4,6 @@
   "dependencies": {
     "NetCoreManager.Domain": "1.0.0-*",
     "NetCoreManager.Infrastructure": "1.0.0-*",
-    "NetCoreManager.Infrastructure.Interfaces": "1.0.0-*",
     "NETStandard.Library": "1.6.1",
     "xunit": "2.1.0",
     "xunit.abstractions": "2.0.1",

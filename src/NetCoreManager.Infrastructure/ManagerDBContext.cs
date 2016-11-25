@@ -4,12 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NetCoreManager.Domain.Entity;
-using NetCoreManager.Infrastructure.Interfaces;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace NetCoreManager.Infrastructure
 {
-    public class ManagerDbContext: DbContext,IDbContext
+    public class ManagerDbContext: DbContext
     {
         public ManagerDbContext(DbContextOptions<ManagerDbContext> options) : base(options)
         {

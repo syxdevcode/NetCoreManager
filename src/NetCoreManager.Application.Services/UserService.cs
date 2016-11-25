@@ -5,26 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NetCoreManager.Application.Interface;
 using NetCoreManager.Domain.Entity;
-using NetCoreManager.Repository.Interfaces;
+using NetCoreManager.Infrastructure;
+using NetCoreManager.Infrastructure.UnitOfWork;
 
 namespace NetCoreManager.Application.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _IUserRepository;
+        private readonly IUnitOfWork<ManagerDbContext> _unitOfWork;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUnitOfWork<ManagerDbContext> unitOfWork)
         {
-            if (userRepository == null)
+            if (unitOfWork == null)
             {
-                throw new ArgumentNullException(nameof(userRepository));
+                throw new ArgumentNullException(nameof(unitOfWork));
             }
-            _IUserRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<User> GetById(Guid id)
         {
-            var user = await _IUserRepository.Get(id).FirstOrDefaultAsync();
+            var user = await _unitOfWork.Repository<User>().FindAsync(id);
             //User user=new User();
             //user.Id = Guid.NewGuid();
             //user.Account = "测试";
@@ -37,7 +38,7 @@ namespace NetCoreManager.Application.Services
         {
             //TODO 加密密码
 
-            var result = await _IUserRepository.Login(account, pwd);
+            var result = await _unitOfWork.Repository<User>().Where(o=>o.Account==account&&o.Password==pwd).FirstOrDefaultAsync();
 
             return result;
         }

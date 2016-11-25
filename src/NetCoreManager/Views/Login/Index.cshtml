@@ -54,7 +54,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/lib/iCheck/icheck.js"></script>
     <script src="~/lib/layer/src/layer.js"></script>
-    <script src="~/lib/jquery.cookie/jquery.cookie.js"></script>
+    <script src="~/lib/js-cookie/src/js.cookie.js"></script>
     <script>
         $(function () {
             $('input').iCheck({
@@ -68,16 +68,17 @@
             };
 
             //判断之前是否有设置cookie，如果有，则设置【记住我】选择框
-            if ($.cookie("fonour_userName") != undefined) {
+            if (Cookies.get("_userName") != undefined) {
                 $("#IsRemember").attr("checked", "checked");
+                $(".icheckbox_square-blue").addClass("checked");
             }
             else {
                 $("#IsRemember").removeAttr("checked");
+                $(".icheckbox_square-blue").removeClass("checked");
             }
             //读取cookie
             if ($("#IsRemember:checked").length > 0) {
-                $("#UserName").val($.cookie("fonour_userName"));
-                $("#Password").val($.cookie("fonour_password"));
+                $("#Account").val(Cookies.get("_userName"));
             }
         });
 
@@ -85,12 +86,10 @@
         function onSubmit() {
             //设置cookie
             if ($("#IsRemember:checked").length > 0) {
-                $.cookie("fonour_userName", $("#UserName").val());
-                $.cookie("fonour_password", $("#Password").val());
+                Cookies.set("_userName", $("#Account").val(), { path: '' });
             } else {
                 //清除cookie
-                $.removeCookie("fonour_userName");
-                $.removeCookie("fonour_password");
+                Cookies.remove("_userName", { path: '' });
             }
         };
     </script>

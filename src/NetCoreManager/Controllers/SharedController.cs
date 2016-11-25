@@ -15,5 +15,10 @@ namespace NetCoreManager.Mvc.Controllers
         {
             return View();
         }
+
+        public IActionResult PageNoFound()
+        {
+            return View();
+        }
     }
 }
