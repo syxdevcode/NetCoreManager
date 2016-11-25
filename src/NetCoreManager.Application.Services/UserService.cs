@@ -26,11 +26,6 @@ namespace NetCoreManager.Application.Services
         public async Task<User> GetById(Guid id)
         {
             var user = await _unitOfWork.Repository<User>().FindAsync(id);
-            //User user=new User();
-            //user.Id = Guid.NewGuid();
-            //user.Account = "测试";
-            //user.IsDeleted = false;
-            //user.CreateTime= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             return user;
         }
 
