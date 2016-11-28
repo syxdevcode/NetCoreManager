@@ -14,6 +14,7 @@ using NetCoreManager.Application.Services;
 using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using NetCoreManager.Component.Tools.ConfigureHelper;
 using NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel;
 using NetCoreManager.Mvc.Filter;
@@ -100,7 +101,15 @@ namespace NetCoreManager.Mvc
                 app.UseExceptionHandler("/Shared/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    const int durationInSeconds = 60 * 60 * 24;
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] =
+                        "public,max-age=" + durationInSeconds;
+                }
+            });
 
             //Session
             app.UseSession();
