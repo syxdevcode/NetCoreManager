@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreManager.Application.Interface;
-using NetCoreManager.Component.Tools.Convert;
+using NetCoreManager.Component.Tools.ConfigureHelper;
+using NetCoreManager.Component.Tools.ConvertHelper;
+using NetCoreManager.Component.Tools.Encrypt;
 using NetCoreManager.Mvc.Model;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,14 +18,20 @@ namespace NetCoreManager.Mvc.Controllers
     public class LoginController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly ApplicationConfigurationHelper _applicationConfigurationHelper;
 
-        public LoginController(IUserService userService)
+        public LoginController(IUserService userService, ApplicationConfigurationHelper applicationConfigurationHelper)
         {
             if (userService == null)
             {
                 throw new ArgumentNullException(nameof(userService));
             }
+            if (applicationConfigurationHelper == null)
+            {
+                throw new ArgumentNullException(nameof(applicationConfigurationHelper));
+            }
             _userService = userService;
+            _applicationConfigurationHelper = applicationConfigurationHelper;
         }
 
 
@@ -38,6 +47,8 @@ namespace NetCoreManager.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Password = EncryptHelper.Encrypt(model.Password, _applicationConfigurationHelper.AppConfigurations.PwdSalt);
+
                 //检查用户信息
                 var user = await _userService.Login(model.Account.ToLower(), model.Password);
                 if (user!=null)

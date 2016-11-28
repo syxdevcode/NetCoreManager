@@ -14,6 +14,8 @@ using NetCoreManager.Application.Services;
 using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
+using NetCoreManager.Component.Tools.ConfigureHelper;
+using NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel;
 using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Infrastructure.UnitOfWork;
 
@@ -58,9 +60,13 @@ namespace NetCoreManager.Mvc
             //添加数据上下文
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
             
-            //依赖注入
+            //注入DbContext
             services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
 
+            //注入获取application配置帮助类
+            services.AddTransient<ApplicationConfigurationHelper>();
+
+            services.Configure<ApplicationConfiguration>(Configuration.GetSection("ApplicationConfiguration"));
 
             // Add framework services.
             services.AddMvc();

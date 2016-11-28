@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace NetCoreManager.Component.Tools.Convert
+namespace NetCoreManager.Component.Tools.ConvertHelper
 {
     public class ByteConvertHelper
     {
