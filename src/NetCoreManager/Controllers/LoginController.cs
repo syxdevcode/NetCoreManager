@@ -43,6 +43,7 @@ namespace NetCoreManager.Mvc.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(LoginModel model)
         {
             if (ModelState.IsValid)
