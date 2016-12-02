@@ -78,7 +78,7 @@ namespace NetCoreManager.Mvc
             // 添加路由前缀
             //services.AddMvc(opt =>
             //{
-            //    opt.UseCentralRoutePrefix(new RouteAttribute("api/v1"));
+            //    opt.UseCentralRoutePrefix(new RouteAttribute("api/{version}"));
             //});
 
             #endregion
