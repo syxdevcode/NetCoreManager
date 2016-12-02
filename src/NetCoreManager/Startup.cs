@@ -21,6 +21,7 @@ using NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel;
 using NetCoreManager.Component.Tools.OptionsExtensions;
 using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Infrastructure.UnitOfWork;
+using NetCoreManager.Component.Tools.Middleware;
 
 namespace NetCoreManager.Mvc
 {
@@ -122,6 +123,9 @@ namespace NetCoreManager.Mvc
                         "public,max-age=" + durationInSeconds;
                 }
             });
+
+            //添加中间件防止图片盗链
+            app.UseHotlinkingPreventionMiddleware();
 
             //Session
             app.UseSession();
