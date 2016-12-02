@@ -52,7 +52,7 @@ namespace NetCoreManager.Mvc.Controllers
 
                 //检查用户信息
                 var user = await _userService.Login(model.Account.ToLower(), model.Password);
-                if (user!=null)
+                if (user != null)
                 {
                     //记录Session
                     HttpContext.Session.Set("_CurrentUser", ByteConvertHelper.Object2Bytes(user));
@@ -74,7 +74,7 @@ namespace NetCoreManager.Mvc.Controllers
             }
             return View(model);
         }
-
+        
         public IActionResult SignOut()
         {
             HttpContext.Session.Remove("_CurrentUser");

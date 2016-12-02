@@ -6,6 +6,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -17,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using NetCoreManager.Component.Tools.ConfigureHelper;
 using NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel;
+using NetCoreManager.Component.Tools.OptionsExtensions;
 using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Infrastructure.UnitOfWork;
 
@@ -69,7 +71,17 @@ namespace NetCoreManager.Mvc
 
             services.Configure<ApplicationConfiguration>(Configuration.GetSection("ApplicationConfiguration"));
 
+            #region 测试路由前缀
+
             // Add framework services.
+            // 添加路由前缀
+            //services.AddMvc(opt =>
+            //{
+            //    opt.UseCentralRoutePrefix(new RouteAttribute("api/v1"));
+            //});
+
+            #endregion
+
             services.AddMvc();
 
             //Session服务
