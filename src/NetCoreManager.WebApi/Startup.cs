@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NetCoreManager.Component.Tools.ConfigureHelper;
-using NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel;
+using NetCoreManager.Component.Tools.Service;
 using NetCoreManager.Component.Tools.OptionsExtensions;
 using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
@@ -25,6 +24,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using NetCoreManager.WebApi.Auth;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace NetCoreManager.WebApi
 {
@@ -57,10 +57,10 @@ namespace NetCoreManager.WebApi
             services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
 
             //注入获取application配置帮助类
-            services.AddTransient<ApplicationConfigurationHelper>();
+            services.AddTransient<ApplicationConfigurationService>();
 
             services.Configure<ApplicationConfiguration>(Configuration.GetSection("ApplicationConfiguration"));
-            
+
             // Enable the use of an [Authorize("Bearer")] attribute on methods and classes to protect.
             services.AddAuthorization(auth =>
             {
@@ -68,6 +68,29 @@ namespace NetCoreManager.WebApi
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
             });
+            #region 添加资源跨越
+            //services.AddCors();
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowSpecificOrigin", builders =>
+            //    {
+            //        builders.WithOrigins("http://localhost", "http://localhost:9090");
+            //    });
+            //});
+            //see the controller attribute
+            //like [EnableCors("AllowSpecificOrigin")]
+            #endregion
+
+            #region 添加CORS支持通配符解决方案
+
+            services.AddScoped<ICorsService, WildcardCorsService>();
+            services.Configure<CorsOptions>(options => options.AddPolicy(
+                "AllowSameDomain", builders => builders.WithOrigins("*.syxtest.com")));
+            /*使用
+             * [EnableCors("AllowSameDomain")]
+            */
+            #endregion
 
             #region 测试路由前缀
             //Add framework services.
@@ -143,6 +166,10 @@ namespace NetCoreManager.WebApi
             app.UseJwtBearerAuthentication(options);
             #endregion
 
+            #region 添加资源跨越
+            //app.UseCors("AllowSpecificOrigin");
+            #endregion
+            
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>

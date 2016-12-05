@@ -2,9 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
-namespace NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel
+namespace NetCoreManager.Component.Tools.Service
 {
+    /// <summary>
+    /// 读取配置文件
+    /// </summary>
+    public class ApplicationConfigurationService
+    {
+        private readonly IOptions<ApplicationConfiguration> _appConfiguration;
+
+        public ApplicationConfigurationService(IOptions<ApplicationConfiguration> appConfiguration)
+        {
+            _appConfiguration = appConfiguration;
+        }
+
+        public ApplicationConfiguration AppConfigurations
+        {
+            get
+            {
+                return _appConfiguration.Value;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class ApplicationConfiguration
     {
         #region 属性成员

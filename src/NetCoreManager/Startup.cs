@@ -16,8 +16,7 @@ using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-using NetCoreManager.Component.Tools.ConfigureHelper;
-using NetCoreManager.Component.Tools.ConfigureHelper.ConfigureModel;
+using NetCoreManager.Component.Tools.Service;
 using NetCoreManager.Component.Tools.OptionsExtensions;
 using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Infrastructure.UnitOfWork;
@@ -68,7 +67,7 @@ namespace NetCoreManager.Mvc
             services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
 
             //注入获取application配置帮助类
-            services.AddTransient<ApplicationConfigurationHelper>();
+            services.AddTransient<ApplicationConfigurationService>();
 
             services.Configure<ApplicationConfiguration>(Configuration.GetSection("ApplicationConfiguration"));
 
