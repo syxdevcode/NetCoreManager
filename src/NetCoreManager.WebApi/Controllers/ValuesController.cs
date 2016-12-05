@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NetCoreManager.WebApi.Controllers
@@ -11,6 +12,7 @@ namespace NetCoreManager.WebApi.Controllers
     {
         // GET api/values
         [HttpGet]
+        [Authorize("Bearer")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -18,6 +20,7 @@ namespace NetCoreManager.WebApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
+        [Authorize("Bearer")]
         public string Get(int id)
         {
             return "value";

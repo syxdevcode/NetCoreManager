@@ -50,6 +50,7 @@
                 </div>
             </form>
         </div>
+        <button id="requestAPI" type="button" class="btn btn-primary btn-block btn-flat">获取api数据</button>
         <!-- /.login-box-body -->
     </div>
     <!-- /.login-box -->
@@ -118,7 +119,7 @@
         });
 
         $("#requestAPI").click(function () {
-            $.get("/api/Values",
+            $.get("/api/v1/Values",
                 {},
                 function (data) {
                     alert(data);

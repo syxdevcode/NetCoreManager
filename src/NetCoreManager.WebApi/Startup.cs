@@ -153,12 +153,7 @@ namespace NetCoreManager.WebApi
                 }
             });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=login}/{action=Index}");
-            });
+            app.UseMvc();
         }
     }
 }

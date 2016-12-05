@@ -18,6 +18,7 @@ namespace NetCoreManager.WebApi.Controllers
         }
 
         [Route("index")]
+        [HttpGet]
 
         public IActionResult Index()
         {
