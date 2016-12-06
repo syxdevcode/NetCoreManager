@@ -31,9 +31,7 @@ namespace NetCoreManager.Application.Services
 
         public async Task<User> Login(string account, string pwd)
         {
-            //TODO 加密密码
-
-            var result = await _unitOfWork.Repository<User>().Where(o=>o.Account==account&&o.Password==pwd).FirstOrDefaultAsync();
+            var result = await _unitOfWork.Repository<User>().Where(o => o.Account == account && o.Password == pwd).FirstOrDefaultAsync();
 
             return result;
         }
