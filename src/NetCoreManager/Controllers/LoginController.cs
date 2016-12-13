@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreManager.Application.Interface;
-using NetCoreManager.Component.Tools.ConfigureHelper;
+using NetCoreManager.Component.Tools.Service;
 using NetCoreManager.Component.Tools.ConvertHelper;
 using NetCoreManager.Component.Tools.Encrypt;
 using NetCoreManager.Mvc.Model;
@@ -18,20 +18,20 @@ namespace NetCoreManager.Mvc.Controllers
     public class LoginController : BaseController
     {
         private readonly IUserService _userService;
-        private readonly ApplicationConfigurationHelper _applicationConfigurationHelper;
+        private readonly ApplicationConfigurationService _applicationConfigurationService;
 
-        public LoginController(IUserService userService, ApplicationConfigurationHelper applicationConfigurationHelper)
+        public LoginController(IUserService userService, ApplicationConfigurationService applicationConfigurationService)
         {
             if (userService == null)
             {
                 throw new ArgumentNullException(nameof(userService));
             }
-            if (applicationConfigurationHelper == null)
+            if (applicationConfigurationService == null)
             {
-                throw new ArgumentNullException(nameof(applicationConfigurationHelper));
+                throw new ArgumentNullException(nameof(applicationConfigurationService));
             }
             _userService = userService;
-            _applicationConfigurationHelper = applicationConfigurationHelper;
+            _applicationConfigurationService = applicationConfigurationService;
         }
 
 
@@ -48,7 +48,7 @@ namespace NetCoreManager.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Password = EncryptHelper.Encrypt(model.Password, _applicationConfigurationHelper.AppConfigurations.PwdSalt);
+                model.Password = EncryptHelper.Encrypt(model.Password, _applicationConfigurationService.AppConfigurations.PwdSalt);
 
                 //检查用户信息
                 var user = await _userService.Login(model.Account.ToLower(), model.Password);

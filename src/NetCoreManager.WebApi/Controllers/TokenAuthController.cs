@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using NetCoreManager.Application.Interface;
-using NetCoreManager.Component.Tools.ConfigureHelper;
+using NetCoreManager.Component.Tools.Service;
 using NetCoreManager.Component.Tools.Encrypt;
 using NetCoreManager.Domain.Entity;
 using NetCoreManager.WebApi.Auth;
@@ -23,26 +23,26 @@ namespace NetCoreManager.WebApi.Controllers
     public class TokenAuthController : Controller
     {
         private readonly IUserService _userService;
-        private readonly ApplicationConfigurationHelper _applicationConfigurationHelper;
+        private readonly ApplicationConfigurationService _applicationConfigurationService;
 
-        public TokenAuthController(IUserService userService, ApplicationConfigurationHelper applicationConfigurationHelper)
+        public TokenAuthController(IUserService userService, ApplicationConfigurationService applicationConfigurationService)
         {
             if (userService == null)
             {
                 throw new ArgumentNullException(nameof(userService));
             }
-            if (applicationConfigurationHelper == null)
+            if (applicationConfigurationService == null)
             {
-                throw new ArgumentNullException(nameof(applicationConfigurationHelper));
+                throw new ArgumentNullException(nameof(applicationConfigurationService));
             }
             _userService = userService;
-            _applicationConfigurationHelper = applicationConfigurationHelper;
+            _applicationConfigurationService = applicationConfigurationService;
         }
 
         [Route("getAuthToken")]
         public async Task<string> GetAuthToken(LoginModel user)
         {
-            user.Password = EncryptHelper.Encrypt(user.Password, _applicationConfigurationHelper.AppConfigurations.PwdSalt);
+            user.Password = EncryptHelper.Encrypt(user.Password, _applicationConfigurationService.AppConfigurations.PwdSalt);
             var existUser =await _userService.Login(user.Account, user.Password);
             if (existUser != null)
             {
