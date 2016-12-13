@@ -21,7 +21,9 @@ using NetCoreManager.Component.Tools.OptionsExtensions;
 using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Infrastructure.UnitOfWork;
 using NetCoreManager.Component.Tools.Middleware;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
+[assembly: UserSecretsId("aspnet-NetCoreManager-se3g5b64-19cf-4972-b34f-d16f2e7976ed")]
 namespace NetCoreManager.Mvc
 {
     public class Startup
@@ -33,7 +35,7 @@ namespace NetCoreManager.Mvc
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables()
-                .AddUserSecrets();
+                .AddUserSecrets<Startup>();
             Configuration = builder.Build();
         }
 
