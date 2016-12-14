@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,5 +24,20 @@ namespace NetCoreManager.Test
         {
             return x + y;
         }
+
+        [Fact]
+        public void Test_GetStared_ReturnSpecifiedValue()
+        {
+            ICalculator calculator = Substitute.For<ICalculator>();
+            calculator.Multi(1, 2).Returns(2);
+
+            int actual = calculator.Multi(1, 2);
+            Assert.Equal(2, actual);
+        }
+    }
+
+    public interface ICalculator
+    {
+        int Multi(int x, int y);
     }
 }
