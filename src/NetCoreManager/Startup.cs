@@ -89,6 +89,9 @@ namespace NetCoreManager.Mvc
             //Session服务
             services.AddSession();
 
+            // 添加对输出的内容进行压缩组件：Gzip
+            services.AddResponseCompression();
+
             //登录拦截服务
             services.AddScoped<LoginActionFilter>();
 
@@ -130,6 +133,9 @@ namespace NetCoreManager.Mvc
 
             //Session
             app.UseSession();
+
+            // 添加对输出的内容进行压缩组件：Gzip
+            app.UseResponseCompression();
 
             app.UseMvc(routes =>
             {
