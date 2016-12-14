@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  netcoremanager:
+    image: user/netcoremanager${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80"
