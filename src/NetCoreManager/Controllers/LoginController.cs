@@ -10,6 +10,8 @@ using NetCoreManager.Component.Tools.Service;
 using NetCoreManager.Component.Tools.ConvertHelper;
 using NetCoreManager.Component.Tools.Encrypt;
 using NetCoreManager.Mvc.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,9 +38,15 @@ namespace NetCoreManager.Mvc.Controllers
 
 
         [AllowAnonymous]
-        // GET: /<controller>/
+        [ResponseCache(VaryByHeader = "Accept-Encoding", Location = ResponseCacheLocation.Any, Duration = 10)]
         public IActionResult Index()
         {
+            Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
+            {
+                Public = true,
+                MaxAge = TimeSpan.FromSeconds(10)
+            };
+            Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
             return View();
         }
 

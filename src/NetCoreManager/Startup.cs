@@ -23,7 +23,7 @@ using NetCoreManager.Infrastructure.UnitOfWork;
 using NetCoreManager.Component.Tools.Middleware;
 using Microsoft.Extensions.Configuration.UserSecrets;
 
-[assembly: UserSecretsId("aspnet-NetCoreManager-se3g5b64-19cf-4972-b34f-d16f2e7976ed")]
+[assembly: UserSecretsId("aspnet-NetCoreManager.Mvc-20161125042634")]
 namespace NetCoreManager.Mvc
 {
     public class Startup
@@ -64,7 +64,7 @@ namespace NetCoreManager.Mvc
 
             //添加数据上下文
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
-            
+
             //注入DbContext
             services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
 
@@ -92,6 +92,9 @@ namespace NetCoreManager.Mvc
             // 添加对输出的内容进行压缩组件：Gzip
             services.AddResponseCompression();
 
+            //添加缓存
+            services.AddResponseCaching();
+
             //登录拦截服务
             services.AddScoped<LoginActionFilter>();
 
@@ -101,7 +104,7 @@ namespace NetCoreManager.Mvc
             this.ApplicationContainer = builder.Build();
             return new AutofacServiceProvider(this.ApplicationContainer);
         }
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
         {
@@ -137,13 +140,16 @@ namespace NetCoreManager.Mvc
             // 添加对输出的内容进行压缩组件：Gzip
             app.UseResponseCompression();
 
+            //添加缓存
+            app.UseResponseCaching();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
+
             // If you want to dispose of resources that have been resolved in the
             // application container, register for the "ApplicationStopped" event.
             appLifetime.ApplicationStopped.Register(() => this.ApplicationContainer.Dispose());
