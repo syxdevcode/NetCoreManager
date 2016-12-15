@@ -98,6 +98,12 @@ namespace NetCoreManager.Mvc
             //登录拦截服务
             services.AddScoped<LoginActionFilter>();
 
+            //添加elm
+            services.AddElm(elmOptions =>
+            {
+                elmOptions.Filter = (loggerName, loglevel) => loglevel == LogLevel.Debug;
+            });
+
             var builder = new ContainerBuilder();
             builder.RegisterModule(new AutofacModule());
             builder.Populate(services);
@@ -142,6 +148,12 @@ namespace NetCoreManager.Mvc
 
             //添加缓存
             app.UseResponseCaching();
+
+            #region elm
+            app.UseElmPage();
+            app.UseElmCapture();
+            #endregion
+
 
             app.UseMvc(routes =>
             {
