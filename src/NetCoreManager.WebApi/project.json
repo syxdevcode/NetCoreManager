@@ -38,7 +38,10 @@
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Microsoft.AspNetCore.Authorization": "1.0.0",
-    "Microsoft.AspNetCore.Cors": "1.0.0"
+    "Microsoft.AspNetCore.Cors": "1.0.0",
+    "Swashbuckle.SwaggerUi": "6.0.0-preview-0044",
+    "Swashbuckle.SwaggerGen": "6.0.0-preview-0044",
+    "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1"
   },
 
   "tools": {
@@ -56,7 +59,8 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "xmlDoc": true
   },
 
   "runtimeOptions": {

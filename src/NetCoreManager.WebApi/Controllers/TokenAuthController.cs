@@ -14,6 +14,7 @@ using NetCoreManager.Domain.Entity;
 using NetCoreManager.WebApi.Auth;
 using NetCoreManager.WebApi.Model;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,10 +41,11 @@ namespace NetCoreManager.WebApi.Controllers
         }
 
         [Route("getAuthToken")]
-        public async Task<string> GetAuthToken(LoginModel user)
+        [HttpPost]
+        public async Task<string> GetAuthToken([FromBody, Required]LoginModel user)
         {
             user.Password = EncryptHelper.Encrypt(user.Password, _applicationConfigurationService.AppConfigurations.PwdSalt);
-            var existUser =await _userService.Login(user.Account, user.Password);
+            var existUser = await _userService.Login(user.Account, user.Password);
             if (existUser != null)
             {
                 var requestAt = DateTime.Now;
