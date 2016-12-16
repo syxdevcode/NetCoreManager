@@ -117,6 +117,9 @@ namespace NetCoreManager.Mvc
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            //添加seq日志
+            loggerFactory.AddSeq(Configuration.GetSection("Seq"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

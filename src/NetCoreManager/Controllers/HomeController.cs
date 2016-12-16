@@ -11,7 +11,7 @@ namespace NetCoreManager.Mvc.Controllers
     [ServiceFilter(typeof(LoginActionFilter))]
     public class HomeController : BaseController
     {
-        public readonly IUserService UserService;
+        private readonly IUserService UserService;
 
         /// <summary>
         /// 构造函数注入
