@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreManager.Application.Interface;
 using NetCoreManager.Component.Tools.Service;
@@ -21,6 +20,7 @@ namespace NetCoreManager.Mvc.Controllers
     {
         private readonly IUserService _userService;
         private readonly ApplicationConfigurationService _applicationConfigurationService;
+        private static readonly CryptoTool crypto = CryptoTool.Create(CryptoTypes.EncAes);
 
         public LoginController(IUserService userService, ApplicationConfigurationService applicationConfigurationService)
         {
@@ -36,10 +36,10 @@ namespace NetCoreManager.Mvc.Controllers
             _applicationConfigurationService = applicationConfigurationService;
         }
 
-
+        [HttpGet]
         [AllowAnonymous]
         [ResponseCache(VaryByHeader = "Accept-Encoding", Location = ResponseCacheLocation.Any, Duration = 10)]
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl = null)
         {
             Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
             {
@@ -47,6 +47,7 @@ namespace NetCoreManager.Mvc.Controllers
                 MaxAge = TimeSpan.FromSeconds(10)
             };
             Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -56,6 +57,15 @@ namespace NetCoreManager.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                var captchaString = this.Request.Form["__captcha_image"];
+                var encryptedString = crypto.Encrypt(model.Captcha.ToLower(), "DotNetCore!");
+                if (captchaString != encryptedString)
+                {
+                    //ModelState.AddModelError("", "验证码不正确。");
+                    ViewBag.ErrorInfo = "验证码不正确。";
+                    return View(nameof(Index));
+                }
+
                 model.Password = EncryptHelper.Encrypt(model.Password, _applicationConfigurationService.AppConfigurations.PwdSalt);
 
                 //检查用户信息

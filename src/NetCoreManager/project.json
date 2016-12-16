@@ -41,7 +41,8 @@
     "Microsoft.Extensions.Configuration.UserSecrets": "1.1.0",
     "Microsoft.Extensions.Options": "1.1.0",
     "Microsoft.AspNetCore.ResponseCompression": "1.0.0",
-    "Microsoft.AspNetCore.ResponseCaching": "1.1.0"
+    "Microsoft.AspNetCore.ResponseCaching": "1.1.0",
+    "CoreCompat.System.Drawing": "1.0.0-beta006"
   },
   "tools": {
     "BundlerMinifier.Core": "2.0.238",
