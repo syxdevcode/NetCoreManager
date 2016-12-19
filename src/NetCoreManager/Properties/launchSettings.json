@@ -25,7 +25,7 @@
     },
     "Docker": {
       "launchBrowser": true,
-      "launchUrl": "http://localhost:{ServicePort}"
+      "launchUrl": "http://10.0.75.1:{ServicePort}"
     }
   }
 }
