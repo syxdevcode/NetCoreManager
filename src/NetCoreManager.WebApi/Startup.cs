@@ -27,6 +27,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
+using NetCoreManager.WebApi.Filter;
 
 namespace NetCoreManager.WebApi
 {
@@ -52,14 +53,14 @@ namespace NetCoreManager.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            ////获取数据库连接字符串
-            //var sqlConnectionString = Configuration.GetConnectionString("Default");
+            //获取数据库连接字符串
+            var sqlConnectionString = Configuration.GetConnectionString("Default");
 
-            ////添加数据上下文
-            //services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
+            //添加数据上下文
+            services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
 
-            ////注入DbContext
-            //services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
+            //注入DbContext
+            services.AddScoped<IUnitOfWork<ManagerDbContext>, UnitOfWork<ManagerDbContext>>();
 
             //注入获取application配置帮助类
             services.AddTransient<ApplicationConfigurationService>();
@@ -104,7 +105,7 @@ namespace NetCoreManager.WebApi
             {
                 opt.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
             });
-            services.AddMvc();
+            //services.AddMvc();
             #endregion
 
             #region  添加Swagger
@@ -120,6 +121,7 @@ namespace NetCoreManager.WebApi
                 });
                 //options.IncludeXmlComments(GetXmlCommentsPath(PlatformServices.Default.Application)); // 注意：此处替换成所生成的XML documentation的文件名。
                 options.DescribeAllEnumsAsStrings();
+                options.OperationFilter<AddAuthTokenHeaderParameter>();
             });
 
             if (_hostingEnv.IsDevelopment())
@@ -200,7 +202,7 @@ namespace NetCoreManager.WebApi
             #region 添加资源跨越
             //app.UseCors("AllowSpecificOrigin");
             #endregion
-
+            
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>

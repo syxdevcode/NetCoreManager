@@ -22,10 +22,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "Docker": {
-      "launchBrowser": true,
-      "launchUrl": "http://10.0.75.1:{ServicePort}"
     }
   }
 }

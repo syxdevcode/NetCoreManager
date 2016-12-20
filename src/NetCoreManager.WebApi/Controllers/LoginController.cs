@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreManager.Application.Interface;
+using NetCoreManager.WebApi.Filter;
 
 namespace NetCoreManager.WebApi.Controllers
 {
@@ -19,10 +20,9 @@ namespace NetCoreManager.WebApi.Controllers
 
         [Route("index")]
         [HttpGet]
-
-        public IActionResult Index()
+        public string Index()
         {
-            return View();
+            return "Test";
         }
     }
 }
