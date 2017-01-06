@@ -64,7 +64,8 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
-    "debugType": "portable"
+    "debugType": "portable",
+    "copyToOutput": "hosting.json"
   },
   "runtimeOptions": {
     "configProperties": {
@@ -79,7 +80,8 @@
       "web.config",
       "docker-compose.yml",
       "Dockerfile",
-      ".dockerignore"
+      ".dockerignore",
+      "hosting.json"
     ]
   },
   "scripts": {

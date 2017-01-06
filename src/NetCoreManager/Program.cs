@@ -13,7 +13,7 @@ namespace NetCoreManager.Mvc
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseUrls("http://localhost:5000")
+                //.UseUrls("http://localhost:5000") 已经配置hosting.json
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

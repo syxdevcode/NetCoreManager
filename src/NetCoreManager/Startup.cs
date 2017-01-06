@@ -34,6 +34,7 @@ namespace NetCoreManager.Mvc
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"hosting.json", optional: true)
                 .AddEnvironmentVariables()
                 .AddUserSecrets<Startup>();
             Configuration = builder.Build();
