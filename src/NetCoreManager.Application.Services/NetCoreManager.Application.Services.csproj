@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>NetCoreManager.Application.Services</AssemblyName>
+    <PackageId>NetCoreManager.Application.Services</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreManager.Application.Interface\NetCoreManager.Application.Interface.csproj" />
+    <ProjectReference Include="..\NetCoreManager.Infrastructure\NetCoreManager.Infrastructure.csproj" />
+    <ProjectReference Include="..\NetCoreManager.Infrastructure.UnitOfWork\NetCoreManager.Infrastructure.UnitOfWork.csproj" />
+  </ItemGroup>
+
+</Project>

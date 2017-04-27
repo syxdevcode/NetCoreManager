@@ -23,7 +23,6 @@ using NetCoreManager.Infrastructure.UnitOfWork;
 using NetCoreManager.Component.Tools.Middleware;
 using Microsoft.Extensions.Configuration.UserSecrets;
 
-[assembly: UserSecretsId("aspnet-NetCoreManager.Mvc-20161125042634")]
 namespace NetCoreManager.Mvc
 {
     public class Startup
