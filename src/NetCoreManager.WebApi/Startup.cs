@@ -196,7 +196,7 @@ namespace NetCoreManager.WebApi
             // used, some leeway here could be useful.
             options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(0);
 
-            app.UseJwtBearerAuthentication(options);
+            //app.UseJwtBearerAuthentication(options);
             #endregion
 
             #region 添加资源跨越
@@ -213,14 +213,14 @@ namespace NetCoreManager.WebApi
                 }
             });
 
-            app.UseSwagger(documentFilter: (swaggerDoc, httpRequest) =>
-            {
-                swaggerDoc.Host = httpRequest.Host.Value;
-            });
-            app.UseSwaggerUi(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            });
+            //app.UseSwagger(documentFilter: (swaggerDoc, httpRequest) =>
+            //{
+            //    swaggerDoc.Host = httpRequest.Host.Value;
+            //});
+            //app.UseSwaggerUi(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            //});
 
             app.UseMvc();
         }

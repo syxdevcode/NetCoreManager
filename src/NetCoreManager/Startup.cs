@@ -1,27 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NetCoreManager.Application.Interface;
-using NetCoreManager.Application.Services;
 using NetCoreManager.Infrastructure;
 using NetCoreManager.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using NetCoreManager.Component.Tools.Service;
-using NetCoreManager.Component.Tools.OptionsExtensions;
 using NetCoreManager.Mvc.Filter;
 using NetCoreManager.Infrastructure.UnitOfWork;
 using NetCoreManager.Component.Tools.Middleware;
-using Microsoft.Extensions.Configuration.UserSecrets;
+using Serilog;
 
 namespace NetCoreManager.Mvc
 {
@@ -39,7 +32,9 @@ namespace NetCoreManager.Mvc
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
+        //public IConfiguration Configuration { get; }
+
+        public static IConfigurationRoot Configuration { get; set; }
 
         public IContainer ApplicationContainer { get; private set; }
 
@@ -60,7 +55,7 @@ namespace NetCoreManager.Mvc
 
 
             //获取数据库连接字符串
-            var sqlConnectionString = Configuration.GetConnectionString("Default");
+            var sqlConnectionString = Configuration["ConnectionStrings:Default"];
 
             //添加数据上下文
             services.AddDbContext<ManagerDbContext>(options => options.UseNpgsql(sqlConnectionString));
@@ -99,10 +94,7 @@ namespace NetCoreManager.Mvc
             services.AddScoped<LoginActionFilter>();
 
             //添加elm
-            services.AddElm(elmOptions =>
-            {
-                elmOptions.Filter = (loggerName, loglevel) => loglevel == LogLevel.Debug;
-            });
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new AutofacModule());
@@ -118,7 +110,7 @@ namespace NetCoreManager.Mvc
             loggerFactory.AddDebug();
 
             //添加seq日志
-            loggerFactory.AddSeq(Configuration.GetSection("Seq"));
+            //loggerFactory.AddSeq(Configuration.GetSection("Seq"));
 
             if (env.IsDevelopment())
             {
@@ -153,8 +145,10 @@ namespace NetCoreManager.Mvc
             app.UseResponseCaching();
 
             #region elm
-            app.UseElmPage();
-            app.UseElmCapture();
+            loggerFactory.AddSerilog();
+
+            // Ensure any buffered events are sent at shutdown
+            appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
             #endregion
 
 

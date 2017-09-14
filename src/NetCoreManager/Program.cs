@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Serilog;
+using Serilog.Events;
+using Microsoft.AspNetCore;
 
 namespace NetCoreManager.Mvc
 {
@@ -11,15 +14,34 @@ namespace NetCoreManager.Mvc
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
+            Log.Logger = new LoggerConfiguration()
+                       .MinimumLevel.Debug()
+                       .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                       .Enrich.FromLogContext()
+                       .WriteTo.Console()
+                       .CreateLogger();
+            try
+            {
+                Log.Information("Getting the motors running...");
+                var host = new WebHostBuilder()
                 .UseKestrel()
                 //.UseUrls("http://localhost:5000") 已经配置hosting.json
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
+                .UseSerilog()
                 .UseStartup<Startup>()
                 .Build();
 
-            host.Run();
+                host.Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly"); 
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
     }
 }

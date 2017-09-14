@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetCoreManager.Domain.Entity;
 using NetCoreManager.Infrastructure;
+using NetCoreManager.Infrastructure.UnitOfWork;
 
 namespace NetCoreManager.Test.Web.Controllers
 {
