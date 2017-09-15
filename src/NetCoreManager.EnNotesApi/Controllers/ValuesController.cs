@@ -19,14 +19,38 @@ namespace NetCoreManager.EnNotesApi.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpGet("ReadTxt")]
+        [HttpGet("readtxt")]
         public async Task<string> ReadTxt()
         {
-            var setting = await FileHelp.GetWordArr("Setting", "WordsFileSetting.txt");
+            var setting = await FileHelp.GetWordArrByTxt("Setting", "WordsFileSetting.txt");
 
             foreach (var wordFile in setting)
             {
-                var wordArr = await FileHelp.GetWordArr("EnWords", wordFile);
+                var wordArr = await FileHelp.GetWordArrByTxt("EnWords", wordFile);
+                foreach (var wordLine in wordArr)
+                {
+                    var arr = wordLine.Split('：', ':');
+
+                    if (arr.Length < 2) throw new NullReferenceException("文本行数据异常");
+
+                    // 英文单词
+                    string word = arr[0].Trim();
+
+                    // 注释
+                    string annotation = arr[1].Trim();
+                }
+            }
+            return null;
+        }
+
+        [HttpGet("readword")]
+        public async Task<string> ReadWord()
+        {
+            var setting = await FileHelp.GetWordArrByTxt("Setting", "WordsFileSetting-word.txt");
+
+            foreach (var wordFile in setting)
+            {
+                var wordArr = FileHelp.GetWordsByWordDocument("EnWords", wordFile);
                 foreach (var wordLine in wordArr)
                 {
                     var arr = wordLine.Split('：', ':');

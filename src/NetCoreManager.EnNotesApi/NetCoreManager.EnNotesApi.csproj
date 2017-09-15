@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EnWords\test.docx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Foundatio" Version="5.1.1498" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.0.1" />
+    <PackageReference Include="Foundatio" Version="5.1.1501" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Savorboard.NPOI.Core.Ooxml" Version="1.1.4" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
