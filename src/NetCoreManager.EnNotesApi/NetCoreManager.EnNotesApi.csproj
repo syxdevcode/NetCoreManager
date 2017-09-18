@@ -19,5 +19,8 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreManager.Component.Tools\NetCoreManager.Component.Tools.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -67,6 +67,7 @@ namespace NetCoreManager.EnNotesApi.WordLib
                     {
                         result.Add(((NPOI.XWPF.UserModel.XWPFParagraph)item).Text);
                     }
+                    return result;
                 }
             }
             catch (Exception ex)

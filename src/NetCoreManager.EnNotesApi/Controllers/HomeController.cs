@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Foundatio.Storage;
 using System.IO;
 using NetCoreManager.EnNotesApi.WordLib;
+using NetCoreManager.EnNotesApi.TranslateApi;
 
 namespace NetCoreManager.EnNotesApi.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class HomeController : Controller
     {
         // GET api/values
         [HttpGet]
@@ -59,14 +60,14 @@ namespace NetCoreManager.EnNotesApi.Controllers
 
                     // 英文单词
                     string word = arr[0].Trim();
-
+                    var result = await BaiduTranslateApi.Translate(word);
                     // 注释
                     string annotation = arr[1].Trim();
                 }
             }
             return null;
         }
-        
+
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
