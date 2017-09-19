@@ -50,7 +50,7 @@ namespace NetCoreManager.EnNotesApi.TranslateApi
         }
 
         /// <summary>
-        /// 
+        /// 调用读音接口 --废弃
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
@@ -65,11 +65,22 @@ namespace NetCoreManager.EnNotesApi.TranslateApi
 
     public class YouDaoTranslateModel
     {
-        public string from { get; set; }
+        public string query { get; set; }
+        public List<string> translation { get; set; }
 
-        public string to { get; set; }
+        public urlModel dict {get;set; }
 
-        public List<Trans_resultModel> trans_result { get; set; }
+        public urlModel webdict { get; set; }
+
+        public string l { get; set; }
+
+        public string errorCode { get; set; }
+
+    }
+
+    public class urlModel
+    {
+        public string url { get; set; }
     }
 
     public class YouDao

@@ -7,6 +7,9 @@ using Foundatio.Storage;
 using System.IO;
 using NetCoreManager.EnNotesApi.WordLib;
 using NetCoreManager.EnNotesApi.TranslateApi;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using NetCoreManager.Component.Tools.CommonModel;
 
 namespace NetCoreManager.EnNotesApi.Controllers
 {
@@ -44,28 +47,47 @@ namespace NetCoreManager.EnNotesApi.Controllers
             return null;
         }
 
-        [HttpGet("readword")]
-        public async Task<string> ReadWord()
+        /// <summary>
+        /// 获取单词文件列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("wordfilelist")]
+        public async Task<ResponseModel> GetWordFileList()
         {
             var setting = await FileHelp.GetWordArrByTxt("Setting", "WordsFileSetting-word.txt");
+            return new ResponseModel(OperationResultType.Success, "数据获取成功", setting);
+        }
 
-            foreach (var wordFile in setting)
-            {
-                var wordArr = FileHelp.GetWordsByWordDocument("EnWords", wordFile);
-                foreach (var wordLine in wordArr)
-                {
-                    var arr = wordLine.Split('：', ':');
+        /// <summary>
+        /// 获取单个文件中单词集合
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("readword")]
+        public async Task<ResponseModel> ReadWord()
+        {
+            var setting = await FileHelp.GetWordArrByTxt("Setting", "WordsFileSetting-word.txt");
+            var wordArr = FileHelp.GetWordsByWordDocument("EnWords", setting[0]);
 
-                    if (arr.Length < 2) throw new NullReferenceException("文本行数据异常");
+            return new ResponseModel(OperationResultType.Success, "数据获取成功", wordArr);
+            //foreach (var wordFile in setting)
+            //{
+            //    var wordArr = FileHelp.GetWordsByWordDocument("EnWords", wordFile);
+            //    //foreach (var wordLine in wordArr)
+            //    //{
+            //    //    var arr = wordLine.Split('：', ':');
 
-                    // 英文单词
-                    string word = arr[0].Trim();
-                    var result = await YouDaoTranslateApi.DictVoice(word);
-                    // 注释
-                    string annotation = arr[1].Trim();
-                }
-            }
-            return null;
+            //    //    if (arr.Length < 2) throw new NullReferenceException("文本行数据异常");
+
+            //    //    // 英文单词
+            //    //    string word = arr[0].Trim();
+            //    //    var result = await YouDaoTranslateApi.Translate(word);
+            //    //    // 注释
+            //    //    string annotation = arr[1].Trim();
+            //    //}
+            //    return Json(wordArr);
+            //}
+
+            //return null;
         }
 
         // GET api/values/5
