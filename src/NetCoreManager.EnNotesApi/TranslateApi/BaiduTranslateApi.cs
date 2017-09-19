@@ -29,8 +29,6 @@ namespace NetCoreManager.EnNotesApi.TranslateApi
         /// <returns></returns>
         public static async Task<BaiDuTranslateModel> Translate(string word)
         {
-            string requestUrl = string.Empty;
-
             var salt = TimeHelper.GetUnixTimestamp();
 
             word = System.Net.WebUtility.HtmlEncode(word);
@@ -38,16 +36,13 @@ namespace NetCoreManager.EnNotesApi.TranslateApi
             var signStr = string.Format("{0}{1}{2}{3}", AppId, word, salt, AppSecret);
             var sign = Md5Helper.GetMD5(signStr);
 
-            string par = string.Format("{0}?q={1}&from={2}&to={3}&appid={4}&salt={5}&sign={6}", HttpUrl, word, "en", "zh", AppId, salt, sign);
+            string requestUrl = string.Format("{0}?q={1}&from={2}&to={3}&appid={4}&salt={5}&sign={6}", HttpUrl, word, "en", "zh", AppId, salt, sign);
 
-            var result = await HttpHelper.HttpGetAsync(par, Encoding.UTF8);
+            var result = await HttpHelper.HttpGetAsync(requestUrl, Encoding.UTF8);
             var model = Json.ToObject<BaiDuTranslateModel>(result);
 
             return model;
         }
-
-        
-
     }
 
     public class BaiDuTranslateModel

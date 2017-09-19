@@ -60,7 +60,7 @@ namespace NetCoreManager.EnNotesApi.Controllers
 
                     // 英文单词
                     string word = arr[0].Trim();
-                    var result = await BaiduTranslateApi.Translate(word);
+                    var result = await YouDaoTranslateApi.DictVoice(word);
                     // 注释
                     string annotation = arr[1].Trim();
                 }
