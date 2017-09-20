@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D63AD083-8BD5-428F-9555-385399AE3C73}"
 EndProject
@@ -39,7 +39,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreManager.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreManager.WebApi", "src\NetCoreManager.WebApi\NetCoreManager.WebApi.csproj", "{98DAC15C-5CF5-4EDF-9E69-EF4DC5E4D9DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreManager.EnNotesApi", "src\NetCoreManager.EnNotesApi\NetCoreManager.EnNotesApi.csproj", "{B6E3F26C-C148-47C0-84ED-EB176E343638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreManager.EnNotesApi", "src\NetCoreManager.EnNotesApi\NetCoreManager.EnNotesApi.csproj", "{B6E3F26C-C148-47C0-84ED-EB176E343638}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-App", "5-App", "{8A4CFBD4-F043-4FBA-935A-ED189064CA0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNotes", "src\AppNotes\AppNotes.csproj", "{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebViewJs", "src\WebViewJs\WebViewJs.csproj", "{0913AD15-5C4B-4467-9A3C-04DAFA6B776C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +101,16 @@ Global
 		{B6E3F26C-C148-47C0-84ED-EB176E343638}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6E3F26C-C148-47C0-84ED-EB176E343638}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6E3F26C-C148-47C0-84ED-EB176E343638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0913AD15-5C4B-4467-9A3C-04DAFA6B776C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0913AD15-5C4B-4467-9A3C-04DAFA6B776C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0913AD15-5C4B-4467-9A3C-04DAFA6B776C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0913AD15-5C4B-4467-9A3C-04DAFA6B776C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,5 +132,11 @@ Global
 		{26966F5F-2956-4D19-99A7-A2F5F6AAFA97} = {33693F85-47EC-4674-8698-8BE0C40F67A8}
 		{98DAC15C-5CF5-4EDF-9E69-EF4DC5E4D9DD} = {28A5DC24-CED1-4A23-90D8-07C7FC70B418}
 		{B6E3F26C-C148-47C0-84ED-EB176E343638} = {28A5DC24-CED1-4A23-90D8-07C7FC70B418}
+		{8A4CFBD4-F043-4FBA-935A-ED189064CA0F} = {D63AD083-8BD5-428F-9555-385399AE3C73}
+		{6DAFC29D-3F3B-472B-8424-AD517CF0A0A4} = {8A4CFBD4-F043-4FBA-935A-ED189064CA0F}
+		{0913AD15-5C4B-4467-9A3C-04DAFA6B776C} = {8A4CFBD4-F043-4FBA-935A-ED189064CA0F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2855B8C-41E5-42BC-B615-3CE96C23E513}
 	EndGlobalSection
 EndGlobal

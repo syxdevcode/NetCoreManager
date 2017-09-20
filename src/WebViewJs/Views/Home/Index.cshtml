@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link href="~/css/mui.min.css" rel="stylesheet" />
+<script src="~/js/mui-min.js"></script>
+
+<body ontouchstart="">
+    <button onclick="showmessage('页面按钮点击')" type="button" class="mui-btn mui-btn-primary mui-btn-outlined">弹出</button>
+    <button onclick="showmessage1('页面按钮点击')" type="button" class="mui-btn mui-btn-primary mui-btn-outlined">弹出1</button>
+    <button onclick="ShowAdMessage()" type="button" class="mui-btn mui-btn-primary mui-btn-outlined">调用后台C#</button>
+    <script>
+        //定义一个JS方法
+        function showmessage(message) {
+            mui.alert(message)
+        }
+
+        //定义一个JS方法,并返回一个字符串
+        function showmessage1(message) {
+            mui.alert(message)
+
+            return "JS反馈"
+        }
+
+        function ShowAdMessage() {
+            // alert(wv);
+            wv.SayHello("这里是JS调用后台的C#代码");
+
+        }
+    </script>
+</body>
