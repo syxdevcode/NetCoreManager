@@ -26,6 +26,9 @@ namespace AppNotes
 		
 		public static void UpdateIdValues()
 		{
+			global::ZXing.Mobile.Resource.Id.contentFrame = global::AppNotes.Resource.Id.contentFrame;
+			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::AppNotes.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::AppNotes.Resource.Layout.zxingscannerfragmentlayout;
 		}
 		
 		public partial class Attribute
@@ -51,7 +54,16 @@ namespace AppNotes
 			public const int button2 = 2130968576;
 			
 			// aapt resource value: 0x7f040002
-			public const int webView1 = 2130968578;
+			public const int button3 = 2130968578;
+			
+			// aapt resource value: 0x7f040005
+			public const int contentFrame = 2130968581;
+			
+			// aapt resource value: 0x7f040004
+			public const int surfaceView1 = 2130968580;
+			
+			// aapt resource value: 0x7f040003
+			public const int webView1 = 2130968579;
 			
 			static Id()
 			{
@@ -69,6 +81,15 @@ namespace AppNotes
 			// aapt resource value: 0x7f020000
 			public const int Main = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int SaoYiSao = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int zxingscanneractivitylayout = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int zxingscannerfragmentlayout = 2130837507;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -84,6 +105,9 @@ namespace AppNotes
 			
 			// aapt resource value: 0x7f030000
 			public const int app_name = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int camera = 2130903041;
 			
 			static String()
 			{

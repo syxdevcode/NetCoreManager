@@ -59,6 +59,60 @@ namespace AppNotes
             // 调用C#代码
             //添加我们刚创建的类,并命名为wv 
             webView.AddJavascriptInterface(new MyJsInterface(this), "wv");
+
+            var btn3 = FindViewById<Button>(Resource.Id.button3);//添加点击事件
+            btn3.Click += delegate
+            {
+                Intent intent = new Intent(this, typeof(SaoYiSaoActivity));
+                intent.AddFlags(ActivityFlags.SingleTop);
+                StartActivityForResult(intent, 1);
+            };
+
+            // 调用电话
+            Android.Net.Uri uri = Android.Net.Uri.Parse("tel:15801654715");
+            Intent it = new Intent(Intent.ActionDial, uri);
+            StartActivity(it);
+
+            // 调用短信
+            Android.Net.Uri uri1 = Android.Net.Uri.Parse("smsto:10010");
+            Intent it1 = new Intent(Intent.ActionSendto, uri1);
+            it.PutExtra("sms_body", "你妹妹,我没欠费 你给我停机!");
+            StartActivity(it1);
+
+            // 调用地图
+            Android.Net.Uri uri2 = Android.Net.Uri.Parse("geo:38.899533,-77.036476");
+            Intent it2 = new Intent(Intent.ActionView, uri2);
+            StartActivity(it);
+
+            //调用Email
+            Android.Net.Uri uri3 = Android.Net.Uri.Parse("mailto:777@qq.com?cc=aa@qq.com&subject=标题&body=内容");
+            var intent1 = new Intent(Intent.ActionView, uri3);
+            StartActivity(intent1);
+
+            //调用通讯录
+            //第一种(建议使用第一种)
+            Android.Net.Uri uri4 = Android.Net.Uri.Parse("content://contacts/people");
+            Intent it4 = new Intent(Intent.ActionPick, uri4);
+            StartActivityForResult(it4, 11);
+            //第二种 
+            Intent i = new Intent();
+            i.SetAction(Intent.ActionGetContent);
+            i.SetType("vnd.android.cursor.item/phone");
+            StartActivityForResult(i, 11);
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            //如果当初的发的requestCode =1
+            if (requestCode == 1 && resultCode == Result.Ok)
+            {
+                // 获取WebView对象
+                var webView = FindViewById<WebView>(Resource.Id.webView1);
+                webView.LoadUrl(data.GetStringExtra("code"));
+                Toast.MakeText(this, "扫描结果:" + data.GetStringExtra("code"), ToastLength.Short).Show();
+            }
         }
 
         public void ShowMessage(string message)
@@ -120,7 +174,7 @@ namespace AppNotes
     /// <summary>
     /// js 调用C#代码
     /// </summary>
-    public class MyJsInterface:Java.Lang.Object
+    public class MyJsInterface : Java.Lang.Object
     {
         Context context;
 
