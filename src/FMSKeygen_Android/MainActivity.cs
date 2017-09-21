@@ -35,20 +35,37 @@ namespace FMSKeygen_Android
             txtActiviationCode = FindViewById<EditText>(Resource.Id.txtActiviationCode);
             //取消对验证码文本框的所有按键监听
             txtActiviationCode.KeyListener = null;
+
+            // 清除事件
             Button btnclear = FindViewById<Button>(Resource.Id.btnClear);
             btnclear.Click += Btnclear_Click;
+
+            //获取注册码
             Button btngetactiviationcode = FindViewById<Button>(Resource.Id.btnGetActiviationCode);
             btngetactiviationcode.Click += Btngetactiviationcode_Click;
+
+            // 扫描二维码
             Button btnscanqrcode = FindViewById<Button>(Resource.Id.btnScanQRCode);
             btnscanqrcode.Click += Btnscanqrcode_Click;
+
+            //复制
             Button btncopy = FindViewById<Button>(Resource.Id.btnCopy);
             btncopy.Click += Btncopy_Click;
+
+            //读取二维码
             Button btnreadqrcode = FindViewById<Button>(Resource.Id.btnReadQRCode);
             btnreadqrcode.Click += Btnreadqrcode_Click;
+
+            //分享
             Button btnshare = FindViewById<Button>(Resource.Id.btnShare);
             btnshare.Click += Btnshare_Click;
         }
 
+        /// <summary>
+        /// 分享
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Btnshare_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtActiviationCode.Text))
@@ -75,6 +92,11 @@ namespace FMSKeygen_Android
             StartActivity(Intent.CreateChooser(intent, "发送激活码"));
         }
 
+        /// <summary>
+        /// 验证机器码
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         private string ValidateFormat(string str)
         {
             if (str.Length < 19)
@@ -94,6 +116,11 @@ namespace FMSKeygen_Android
             return string.Empty;
         }
 
+        /// <summary>
+        /// 读取二维码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Btnreadqrcode_Click(object sender, EventArgs e)
         {
             Intent = new Intent();
@@ -160,6 +187,11 @@ namespace FMSKeygen_Android
             }
         }
 
+        /// <summary>
+        /// 复制注册码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Btncopy_Click(object sender, EventArgs e)
         {
             ClipboardManager clip = (ClipboardManager)GetSystemService(ClipboardService);
@@ -171,6 +203,11 @@ namespace FMSKeygen_Android
             Toast.MakeText(this, "激活码已复制到剪贴板", ToastLength.Short).Show();
         }
 
+        /// <summary>
+        /// 扫描二维码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Btnscanqrcode_Click(object sender, EventArgs e)
         {
             var scanner = new ZXing.Mobile.MobileBarcodeScanner();
@@ -181,6 +218,11 @@ namespace FMSKeygen_Android
             Btngetactiviationcode_Click(this, null);
         }
 
+        /// <summary>
+        /// 生成注册码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Btngetactiviationcode_Click(object sender, EventArgs e)
         {
             string strerr = ValidateFormat(txtMachineCode.Text);
@@ -195,6 +237,11 @@ namespace FMSKeygen_Android
             txtActiviationCode.Text = GetActiveCode(txtMachineCode.Text);
         }
 
+        /// <summary>
+        /// 清除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Btnclear_Click(object sender, EventArgs e)
         {
             txtMachineCode.Text = txtActiviationCode.Text = string.Empty;
