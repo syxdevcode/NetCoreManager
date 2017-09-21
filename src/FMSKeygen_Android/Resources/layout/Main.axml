@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:rowCount="6"
+        android:columnCount="2"
+        android:id="@+id/gridLayout1"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_marginTop="0.0dp">
+        <TextView
+            android:id="@+id/tvMachineCode"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="5dp"
+            android:textSize="20sp"
+            android:layout_marginTop="50dp"
+            android:text="机器码" />
+        <EditText
+            android:id="@+id/txtMachineCode"
+            android:textSize="20sp"
+            android:maxLength="20"
+            android:layout_marginTop="50dp"
+            android:layout_width="fill_parent" />
+        <TextView
+            android:id="@+id/tvActiviationCode"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="5dp"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:text="激活码" />
+        <EditText
+            android:id="@+id/txtActiviationCode"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:layout_width="fill_parent" />
+        <Button
+            android:id="@+id/btnGetActiviationCode"
+            android:layout_marginTop="30dp"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:text="获取激活码" />
+        <Button
+            android:text="扫描二维码"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:id="@+id/btnScanQRCode" />
+        <Button
+            android:text="读取二维码"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:id="@+id/btnReadQRCode" />
+        <Button
+            android:id="@+id/btnCopy"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:text="复制激活码" />
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:text="发送激活码" />
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:text="清除" />
+    </GridLayout>
+</LinearLayout>
